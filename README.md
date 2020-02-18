@@ -16,7 +16,7 @@
     dotnet new feather -n TodoApi
     ```
 
-## Create the Database model
+## Create the database model
 
 1. Add the `TodoItem.cs` file with the following contents:
    ```C#
@@ -34,6 +34,8 @@
         public bool IsComplete { get; set; }
     }
    ```
+   The above model will be used for both JSON reading and storing todo items in the database.
+   
 1. Add a reference to NuGet package `Microsoft.EntityFrameworkCore.InMemory` version `3.1.1` using the following command:
     ```
     dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1.1
