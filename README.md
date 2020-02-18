@@ -82,3 +82,37 @@
         await app.RunAsync();
     }
     ```
+1. Run the application with `dotnet run`. Navigate to the URL http://localhost:5000/api/todos in the browser. It should return an empty JSON array.
+
+## Adding a new todo item
+
+1. In `Program.cs`, create another method called `CreateTodo`:
+    ```C#
+    static async Task CreateTodo(HttpContext context)
+    {
+        var todo = await context.Request.ReadJsonAsync<TodoItem>();
+
+        using var db = new TodoDbContext();
+        await db.Todos.AddAsync(todo);
+        await db.SaveChangesAsync();
+
+        context.Response.StatusCode = 204;
+    }
+    ```
+
+    The above method reads the `TodoItem` from the incoming HTTP request and as a JSON payload and adds
+    it to the database.
+
+1. Wire up `CreateTodo` to the `api/todos` route in `Main`:
+    ```C#
+    static async Task Main(string[] args)
+    {
+        var app = WebApplication.Create(args);
+
+        app.MapGet("/api/todos", GetTodos);
+        app.MapPost("/api/todos", CreateTodo);
+
+        await app.RunAsync();
+    }
+    ```
+1. Navigate to the `TodoReact` application which should be running on http://localhost:3000. The application should be able to add new todo items. Also, refreshing the page should show the stored todo items.
