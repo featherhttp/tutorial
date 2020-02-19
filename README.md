@@ -219,3 +219,7 @@
 ## Test the application
 
 The application should now be fully functional. 
+
+## Adding a method to retrive a single todo item
+
+For Todo application, we added HTTP endpoints for creating, reading, updating and deleting todo items. Using the knowledge gained, try adding a route `api/routes/{id}` that retrives a single todo item by id from the database and writes a JSON response. The method should be called `GetTodo`.
