@@ -60,6 +60,12 @@
     This code does 2 things:
      - It exposes a `Todos` property which represents the list of todo items in the database.
      - The call to `UseInMemoryDatabase` wires up the in memory database storage. Data will only be persisted as long as the application is running.
+1. Restart the server side application but this time we're going to use `dotnet watch`:
+    ```
+    dotnet watch run
+    ```
+
+    This will watch our application for source code changes and will restart the process as a result.
 
 ## Expose the list of todo items
 
@@ -76,7 +82,7 @@
     ```
 
     This method gets the list of todo items from the database and writes a JSON representation to the HTTP response.
-1. Register the `GetTodos` method to the `api/todos` route in `Main`:
+1. Wire up `GetTodos` to the `api/todos` route in `Main`:
     ```C#
     static async Task Main(string[] args)
     {
@@ -108,7 +114,7 @@
     The above method reads the `TodoItem` from the incoming HTTP request and as a JSON payload and adds
     it to the database.
 
-1. Register the `CreateTodo` method to the `api/todos` route in `Main`:
+1. Wire up `CreateTodo` to the `api/todos` route in `Main`:
     ```C#
     static async Task Main(string[] args)
     {
@@ -150,3 +156,66 @@
         context.Response.StatusCode = 204;
     }
     ```
+
+    The above logic retrives the id from the route parameter "id" and uses it to find the todo item in the database. It then reads the JSON payload from the incoming request, sets the `IsComplete` property and updates the todo item in the database.
+1. Wire up `UpdateTodoItem` to the `api/todos/{id}` route in `Main`:
+    ```C#
+    static async Task Main(string[] args)
+    {
+        var app = WebApplication.Create(args);
+
+        app.MapGet("/api/todos", GetTodos);
+        app.MapPost("/api/todos", CreateTodo);
+        app.MapPost("/api/todos/{id}", UpdateCompleted);
+
+        await app.RunAsync();
+    }
+    ```
+
+## Deleting a todo item
+
+1. In `Program.cs` create another method called `DeleteTodo`:
+    ```C#
+    static async Task DeleteTodo(HttpContext context)
+    {
+        if (!context.Request.RouteValues.TryGet("id", out int id))
+        {
+            context.Response.StatusCode = 400;
+            return;
+        }
+
+        using var db = new TodoDbContext();
+        var todo = await db.Todos.FindAsync(id);
+        if (todo == null)
+        {
+            context.Response.StatusCode = 404;
+            return;
+        }
+
+        db.Todos.Remove(todo);
+        await db.SaveChangesAsync();
+
+        context.Response.StatusCode = 204;
+    }
+    ```
+
+    The above logic is very similar to `UpdateTodoItem` but instead. it removes the todo item from the database after finding it.
+
+1. Wire up `DeleteTodo` to the `api/todos/{id}` route in `Main`:
+    ```C#
+    static async Task Main(string[] args)
+    {
+        var app = WebApplication.Create(args);
+
+        app.MapGet("/api/todos", GetTodos);
+        app.MapPost("/api/todos", CreateTodo);
+        app.MapPost("/api/todos/{id}", UpdateCompleted);
+        app.MapDelete("/api/todos/{id}", DeleteTodo);
+
+        await app.RunAsync();
+    }
+    ```
+
+## Test the application
+
+The application should now be fully functional. 
