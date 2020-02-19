@@ -4,10 +4,6 @@
 1. Install feather `dotnet new -i FeatherHttp.Templates::0.1.59-alpha.g2c306f941a --nuget-source https://f.feedz.io/davidfowl/featherhttp/nuget/index.json`
 1. Install [nodejs](https://nodejs.org/en/)
 
-## Run the client side application
-
-1. Navigate to the `TodoReact` folder and run `npm start`.
-1. The application should load but will not work (the browser network tab should show errors for the backend API).
 
 ## Create a new Project
 
@@ -15,6 +11,13 @@
     ```
     dotnet new feather -n TodoApi
     ```
+1. Run the application by navigating to `TodoApi` and running `dotnet run`. The application should be running on http://localhost:5000.
+
+## Run the client side application
+
+1. Navigate to the `TodoReact` folder and run `npm install`. This should restore all of the npm packages (this could take a while).
+1. Now execute `npm start` to run the application.
+1. The application should load but will not work (the browser network tab should show errors for the backend API).
 
 ## Create the database model
 
@@ -73,7 +76,7 @@
     ```
 
     This method gets the list of todo items from the database and writes a JSON representation to the HTTP response.
-1. Wire up `GetTodos` to the `api/todos` route in `Main`:
+1. Register the `GetTodos` method to the `api/todos` route in `Main`:
     ```C#
     static async Task Main(string[] args)
     {
@@ -105,7 +108,7 @@
     The above method reads the `TodoItem` from the incoming HTTP request and as a JSON payload and adds
     it to the database.
 
-1. Wire up `CreateTodo` to the `api/todos` route in `Main`:
+1. Register the `CreateTodo` method to the `api/todos` route in `Main`:
     ```C#
     static async Task Main(string[] args)
     {
@@ -118,3 +121,32 @@
     }
     ```
 1. Navigate to the `TodoReact` application which should be running on http://localhost:3000. The application should be able to add new todo items. Also, refreshing the page should show the stored todo items.
+
+## Changing the state of todo items
+1. In `Program.cs`, create another method called `UpdateTodoItem`:
+    ```C#
+    static async Task UpdateCompleted(HttpContext context)
+    {
+        if (!context.Request.RouteValues.TryGet("id", out int id))
+        {
+            context.Response.StatusCode = 400;
+            return;
+        }
+
+        using var db = new TodoDbContext();
+        var todo = await db.Todos.FindAsync(id);
+
+        if (todo == null)
+        {
+            context.Response.StatusCode = 404;
+            return;
+        }
+
+        var inputTodo = await context.Request.ReadJsonAsync<TodoItem>();
+        todo.IsComplete = inputTodo.IsComplete;
+
+        await db.SaveChangesAsync();
+
+        context.Response.StatusCode = 204;
+    }
+    ```
