@@ -8,11 +8,14 @@
 
 # Setup
 
-1.  Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
-1. Install FeatherHttp Package 
-1. Install Node.js 
-1. Clone this repository and navigate to the tutorial folder
-    - This consists of the frontend application `TodoReact` app.
+1. Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
+1. Install the template using the following command:
+    ```
+    dotnet new -i FeatherHttp.Templates::0.1.59-alpha.g2c306f941a --nuget-source https://f.feedz.io/davidfowl/featherhttp/nuget/index.json
+    ```
+
+1. Install [Node.js](https://nodejs.org/en/)
+1. Clone this repository and navigate to the Tutorial folder, this consists of the frontend application `TodoReact` app.
 
 **Task**:  Build the backend portion using FeatherHttp
 
