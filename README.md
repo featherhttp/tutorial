@@ -1,27 +1,44 @@
-# Build a Todo API using .NET Core
+## Tutorial
 
-1. Pre-requisites .NET Core 3.1, download from http://dot.net/.
-1. Install feather `dotnet new -i FeatherHttp.Templates::0.1.59-alpha.g2c306f941a --nuget-source https://f.feedz.io/davidfowl/featherhttp/nuget/index.json`
-1. Install [nodejs](https://nodejs.org/en/)
+**Goal**: In this exercise, the participants will be asked to build the backend of a TodoReact App.  The user will be exploring the functionality of  FeatherHttp, a .NET core framework. 
 
+**What is FeatherHttp**: FeatherHttp makes it **easy** to write web applications.  
 
-## Create a new Project
+**Why FeatherHttp**: FeatherHttp is lightweight server-side framework designed to scale-up as your application grows in complexity. 
 
-1. Create a new application with the following command:
-    ```
-    dotnet new feather -n TodoApi
-    ```
-1. Run the application by navigating to `TodoApi` and running `dotnet run`. The application should be running on http://localhost:5000.
+# Setup
 
-## Run the client side application
+1.  Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
+1. Install FeatherHttp Package 
+1. Install Node.js 
+1. Clone this repository and navigate to the tutorial folder
+    - This consists of the frontend application `TodoReact` app.
 
-1. Navigate to the `TodoReact` folder and run `npm install`. This should restore all of the npm packages (this could take a while).
-1. Now execute `npm start` to run the application.
-1. The application should load but will not work (the browser network tab should show errors for the backend API).
+**Task**:  Build the backend portion using FeatherHttp
+
+## Tasks
+###  Run the frontend application
+
+1. Once you clone the Todo repo, navigate to the `TodoReact` folder and run `npm start`
+1. The app will load but have no functionality
+
+### Build backend - FeatherHttp
+**Create a new project**
+
+1. Create a new  FeatherHttp application  and added the necessary packages in the `Todo` folder
+
+```
+Todo>dotnet new feather -n TodoApi
+Todo> cd TodoApi
+Todo\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
+```
+   - The commands above create a new FeatherHttp application
+   - Adds the NuGet packages  required in the next section
+2.  Open the `Todo` Folder in VS Code
 
 ## Create the database model
 
-1. Add the `TodoItem.cs` file with the following contents:
+1. Create a file called  `TodoItem.cs`in the TodoApi folder. Add the content below:
    ```C#
    using System.Text.Json.Serialization;
 
@@ -38,11 +55,6 @@
     }
    ```
    The above model will be used for both JSON reading and storing todo items in the database.
-   
-1. Add a reference to NuGet package `Microsoft.EntityFrameworkCore.InMemory` version `3.1.1` using the following command:
-    ```
-    dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1.1
-    ```
 1. Create a file called `TodoDbContext.cs` with the following contents:
     ```C#
     using Microsoft.EntityFrameworkCore;
