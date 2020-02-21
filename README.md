@@ -1,6 +1,6 @@
 ## Tutorial
 
-**Goal**: In this exercise, the participants will be asked to build the backend of a TodoReact App.  The user will be exploring the functionality of  FeatherHttp, a .NET core framework. 
+**Goal**: In this exercise, the participants will be asked to build the backend of a TodoReact App.  The user will be exploring the functionality of  FeatherHttp, a server-side framework. 
 
 **What is FeatherHttp**: FeatherHttp makes it **easy** to write web applications.  
 
