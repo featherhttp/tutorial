@@ -28,12 +28,12 @@
 ### Build backend - FeatherHttp
 **Create a new project**
 
-1. Create a new  FeatherHttp application  and added the necessary packages in the `Todo` folder
+1. Create a new FeatherHttp application and add the necessary packages in the `TodoApi` folder
 
 ```
-Todo>dotnet new feather -n TodoApi
-Todo> cd TodoApi
-Todo\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
+Tutorial>dotnet new feather -n TodoApi
+Tutorial> cd TodoApi
+Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
 ```
    - The commands above create a new FeatherHttp application
    - Adds the NuGet packages  required in the next section
