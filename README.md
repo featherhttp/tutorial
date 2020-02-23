@@ -11,7 +11,7 @@
 1. Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
 1. Install the template using the following command:
     ```
-    dotnet new -i FeatherHttp.Templates::0.1.59-alpha.g2c306f941a --nuget-source https://f.feedz.io/davidfowl/featherhttp/nuget/index.json
+    dotnet new -i FeatherHttp.Templates::0.1.64-alpha.g00afb18f22 --nuget-source https://f.feedz.io/featherhttp/framework/nuget/index.json
     ```
 
 1. Install [Node.js](https://nodejs.org/en/)
