@@ -8,6 +8,7 @@
 
 # Setup
 
+1. Install [git](https://git-scm.com/downloads).
 1. Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
 1. Install the template using the following command:
     ```
