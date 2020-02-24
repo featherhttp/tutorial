@@ -19,12 +19,20 @@
 1. Clone this repository and navigate to the Tutorial folder, this consists of the frontend application `TodoReact` app.
 
 **Task**:  Build the backend portion using FeatherHttp
-
+-------------------------------------------------------
 ## Tasks
 ###  Run the frontend application
 
-1. Once you clone the Todo repo, navigate to the `TodoReact` folder and run `npm start`
+1. Once you clone the Todo repo, navigate to the `TodoReact` folder and run the following commands 
+```
+\Tutorial\TodoReact> npm i 
+\Tutorial\TodoReact> npm start
+```
+- The commands above
+    - Restores packages `npm i `
+    - Starts the react app `npm start`
 1. The app will load but have no functionality
+![image](https://user-images.githubusercontent.com/2546640/75070087-86307c80-54c0-11ea-8012-c78813f1dfd6.png)
 
 ### Build backend - FeatherHttp
 **Create a new project**
@@ -36,13 +44,15 @@ Tutorial>dotnet new feather -n TodoApi
 Tutorial> cd TodoApi
 Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
 ```
-   - The commands above create a new FeatherHttp application
-   - Adds the NuGet packages  required in the next section
+   - The commands above
+     - create a new FeatherHttp application `dotnet new feather -n TodoApi`
+     - Adds the NuGet packages  required in the next section `dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1`
+
 2.  Open the `Todo` Folder in VS Code
 
 ## Create the database model
 
-1. Create a file called  `TodoItem.cs`in the TodoApi folder. Add the content below:
+1. Create a file called  `TodoItem.cs` in the TodoApi folder. Add the content below:
    ```C#
    using System.Text.Json.Serialization;
 
@@ -58,7 +68,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
         public bool IsComplete { get; set; }
     }
    ```
-   The above model will be used for both JSON reading and storing todo items in the database.
+   The above model will be used for reading in JSON and storing todo items into the database.
 1. Create a file called `TodoDbContext.cs` with the following contents:
     ```C#
     using Microsoft.EntityFrameworkCore;
@@ -111,6 +121,8 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
     ```
 1. Run the application with `dotnet run`. Navigate to the URL http://localhost:5000/api/todos in the browser. It should return an empty JSON array.
 
+    <img src="https://user-images.githubusercontent.com/2546640/75116317-1a235500-5635-11ea-9a73-e6fc30639865.png" alt="empty json array" style="text-align:center" width =70% />
+
 ## Adding a new todo item
 
 1. In `Program.cs`, create another method called `CreateTodo`:
@@ -143,6 +155,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
     }
     ```
 1. Navigate to the `TodoReact` application which should be running on http://localhost:3000. The application should be able to add new todo items. Also, refreshing the page should show the stored todo items.
+![image](https://user-images.githubusercontent.com/2546640/75119637-bc056a80-5652-11ea-81c8-71ea13d97a3c.png)
 
 ## Changing the state of todo items
 1. In `Program.cs`, create another method called `UpdateTodoItem`:
@@ -235,8 +248,12 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 ## Test the application
 
 The application should now be fully functional. 
+![image](https://user-images.githubusercontent.com/2546640/75119891-08ea4080-5655-11ea-96be-adab4990ad65.png)
 
-## Task - Create a method on your own
+## Create a method on your own
 ### Add a method to retrive a single todo item
 
-For Todo application, we added HTTP endpoints for creating, reading, updating and deleting todo items. Using the knowledge gained, try adding a route `api/routes/{id}` that retrives a single todo item by id from the database and writes a JSON response. The method should be called `GetTodo`.
+For Todo application, we added HTTP endpoints for creating, reading, updating and deleting todo items. 
+
+Using the knowledge gained, try adding a route `api/routes/{id}` that retrives a single todo item by id from the database and writes a JSON response. The method should be called `GetTodo`.
+
