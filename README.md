@@ -17,6 +17,12 @@
 
 1. Install [Node.js](https://nodejs.org/en/)
 1. Clone this repository and navigate to the Tutorial folder, this consists of the frontend application `TodoReact` app.
+    ```bash
+    git clone git@github.com:featherhttp/tutorial.git featherhttp-tutorial
+    cd featherhttp-tutorial/Tutorial 
+    ```
+
+    > If using [Visual Studio Code](https://code.visualstudio.com/), install the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for C# support.
 
 **Task**:  Build the backend portion using FeatherHttp
 -------------------------------------------------------
@@ -33,6 +39,8 @@
     - Starts the react app `npm start`
 1. The app will load but have no functionality
 ![image](https://user-images.githubusercontent.com/2546640/75070087-86307c80-54c0-11ea-8012-c78813f1dfd6.png)
+
+    > Keep this React app running as we'll need it once we build the back-end in the upcoming steps
 
 ### Build backend - FeatherHttp
 **Create a new project**
@@ -95,7 +103,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 
 ## Expose the list of todo items
 
-1. In `Program.cs`, create a method called `GetTodos`:
+1. In `Program.cs`, create a method called `GetTodos` inside of the `Program` class:
 
     ```C#
     static async Task GetTodos(HttpContext context)
@@ -108,7 +116,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
     ```
 
     This method gets the list of todo items from the database and writes a JSON representation to the HTTP response.
-1. Wire up `GetTodos` to the `api/todos` route in `Main`:
+1. Wire up `GetTodos` to the `api/todos` route by modifying the code in `Main` to the following:
     ```C#
     static async Task Main(string[] args)
     {
@@ -125,7 +133,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 
 ## Adding a new todo item
 
-1. In `Program.cs`, create another method called `CreateTodo`:
+1. In `Program.cs`, create another method called `CreateTodo` inside of the `Program` class:
     ```C#
     static async Task CreateTodo(HttpContext context)
     {
@@ -142,7 +150,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
     The above method reads the `TodoItem` from the incoming HTTP request and as a JSON payload and adds
     it to the database.
 
-1. Wire up `CreateTodo` to the `api/todos` route in `Main`:
+1. Wire up `CreateTodo` to the `api/todos` route by modifying the code in `Main` to the following:
     ```C#
     static async Task Main(string[] args)
     {
@@ -158,7 +166,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 ![image](https://user-images.githubusercontent.com/2546640/75119637-bc056a80-5652-11ea-81c8-71ea13d97a3c.png)
 
 ## Changing the state of todo items
-1. In `Program.cs`, create another method called `UpdateTodoItem`:
+1. In `Program.cs`, create another method called `UpdateTodoItem` inside of the `Program` class:
     ```C#
     static async Task UpdateCompleted(HttpContext context)
     {
@@ -187,7 +195,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
     ```
 
     The above logic retrives the id from the route parameter "id" and uses it to find the todo item in the database. It then reads the JSON payload from the incoming request, sets the `IsComplete` property and updates the todo item in the database.
-1. Wire up `UpdateTodoItem` to the `api/todos/{id}` route in `Main`:
+1. Wire up `UpdateTodoItem` to the `api/todos/{id}` route by modifying the code in `Main` to the following:
     ```C#
     static async Task Main(string[] args)
     {
@@ -203,7 +211,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 
 ## Deleting a todo item
 
-1. In `Program.cs` create another method called `DeleteTodo`:
+1. In `Program.cs` create another method called `DeleteTodo` inside of the `Program` class:
     ```C#
     static async Task DeleteTodo(HttpContext context)
     {
@@ -230,7 +238,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 
     The above logic is very similar to `UpdateTodoItem` but instead. it removes the todo item from the database after finding it.
 
-1. Wire up `DeleteTodo` to the `api/todos/{id}` route in `Main`:
+1. Wire up `DeleteTodo` to the `api/todos/{id}` route by modifying the code in `Main` to the following:
     ```C#
     static async Task Main(string[] args)
     {
