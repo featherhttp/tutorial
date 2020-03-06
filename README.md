@@ -127,7 +127,7 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
         await app.RunAsync();
     }
     ```
-1. Run the application with `dotnet run`. Navigate to the URL http://localhost:5000/api/todos in the browser. It should return an empty JSON array.
+1. Navigate to the URL http://localhost:5000/api/todos in the browser. It should return an empty JSON array.
 
     <img src="https://user-images.githubusercontent.com/2546640/75116317-1a235500-5635-11ea-9a73-e6fc30639865.png" alt="empty json array" style="text-align:center" width =70% />
 
