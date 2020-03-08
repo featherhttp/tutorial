@@ -14,6 +14,7 @@
     ```
     dotnet new -i FeatherHttp.Templates::0.1.64-alpha.g00afb18f22 --nuget-source https://f.feedz.io/featherhttp/framework/nuget/index.json
     ```
+    This will make the `FeatherHttp` templates available in the `dotnet new` command (more below).
 
 1. Install [Node.js](https://nodejs.org/en/)
 1. Clone this repository and navigate to the Tutorial folder, this consists of the frontend application `TodoReact` app.
@@ -117,6 +118,15 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
     ```
 
     This method gets the list of todo items from the database and writes a JSON representation to the HTTP response.
+1. Add the approprate `usings` to the top of the `Program.cs` file.
+    ```
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
+    ```
+    This will import the required namespaces so that the application compiles successfully.
+    
 1. Wire up `GetTodos` to the `api/todos` route by modifying the code in `Main` to the following:
     ```C#
     static async Task Main(string[] args)
