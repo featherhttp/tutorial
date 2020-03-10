@@ -31,10 +31,10 @@
 **Please Note: The completed exercise is available in the [samples folder](https://github.com/featherhttp/tutorial/tree/master/Sample). Feel free to reference it at any point during the tutorial.**
 ###  Run the frontend application
 
-1. Once you clone the Todo repo, navigate to the `TodoReact` folder and run the following commands 
+1. Once you clone the Todo repo, navigate to the `TodoReact` folder inside of the `Tutorial` folder and run the following commands 
 ```
-\Tutorial\TodoReact> npm i 
-\Tutorial\TodoReact> npm start
+TodoReact> npm i 
+TodoReact> npm start
 ```
 - The commands above
     - Restores packages `npm i `
