@@ -52,7 +52,7 @@ TodoReact> npm start
 ```
 Tutorial>dotnet new feather -n TodoApi
 Tutorial> cd TodoApi
-Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
+TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
 ```
    - The commands above
      - create a new FeatherHttp application `dotnet new feather -n TodoApi`
@@ -108,12 +108,12 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 1. In `Program.cs`, create a method called `GetTodos` inside of the `Program` class:
 
     ```C#
-    static async Task GetTodos(HttpContext context)
+    static async Task GetTodos(HttpContext http)
     {
         using var db = new TodoDbContext();
         var todos = await db.Todos.ToListAsync();
 
-        await context.Response.WriteJsonAsync(todos);
+        await http.Response.WriteJsonAsync(todos);
     }
     ```
 
@@ -146,15 +146,15 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 
 1. In `Program.cs`, create another method called `CreateTodo` inside of the `Program` class:
     ```C#
-    static async Task CreateTodo(HttpContext context)
+    static async Task CreateTodo(HttpContext http)
     {
-        var todo = await context.Request.ReadJsonAsync<TodoItem>();
+        var todo = await http.Request.ReadJsonAsync<TodoItem>();
 
         using var db = new TodoDbContext();
         await db.Todos.AddAsync(todo);
         await db.SaveChangesAsync();
 
-        context.Response.StatusCode = 204;
+        http.Response.StatusCode = 204;
     }
     ```
 
@@ -179,11 +179,11 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 ## Changing the state of todo items
 1. In `Program.cs`, create another method called `UpdateTodoItem` inside of the `Program` class:
     ```C#
-    static async Task UpdateCompleted(HttpContext context)
+    static async Task UpdateCompleted(HttpContext http)
     {
-        if (!context.Request.RouteValues.TryGet("id", out int id))
+        if (!http.Request.RouteValues.TryGet("id", out int id))
         {
-            context.Response.StatusCode = 400;
+            http.Response.StatusCode = 400;
             return;
         }
 
@@ -192,16 +192,16 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 
         if (todo == null)
         {
-            context.Response.StatusCode = 404;
+            http.Response.StatusCode = 404;
             return;
         }
 
-        var inputTodo = await context.Request.ReadJsonAsync<TodoItem>();
+        var inputTodo = await http.Request.ReadJsonAsync<TodoItem>();
         todo.IsComplete = inputTodo.IsComplete;
 
         await db.SaveChangesAsync();
 
-        context.Response.StatusCode = 204;
+        http.Response.StatusCode = 204;
     }
     ```
 
@@ -224,11 +224,11 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
 
 1. In `Program.cs` create another method called `DeleteTodo` inside of the `Program` class:
     ```C#
-    static async Task DeleteTodo(HttpContext context)
+    static async Task DeleteTodo(HttpContext http)
     {
-        if (!context.Request.RouteValues.TryGet("id", out int id))
+        if (!http.Request.RouteValues.TryGet("id", out int id))
         {
-            context.Response.StatusCode = 400;
+            http.Response.StatusCode = 400;
             return;
         }
 
@@ -236,14 +236,14 @@ Tutorial\TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --ve
         var todo = await db.Todos.FindAsync(id);
         if (todo == null)
         {
-            context.Response.StatusCode = 404;
+            http.Response.StatusCode = 404;
             return;
         }
 
         db.Todos.Remove(todo);
         await db.SaveChangesAsync();
 
-        context.Response.StatusCode = 204;
+        http.Response.StatusCode = 204;
     }
     ```
 
