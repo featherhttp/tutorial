@@ -8,7 +8,6 @@
 
 # Setup
 
-1. Install [git](https://git-scm.com/downloads).
 1. Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
 1. Install the FeatherHttp template using the `dotnet CLI`. Copy the command below into a terminal or command prompt to install the template.
     ```
@@ -17,13 +16,8 @@
     This will make the `FeatherHttp` templates available in the `dotnet new` command (more below).
 
 1. Install [Node.js](https://nodejs.org/en/)
-1. Clone this repository and navigate to the Tutorial folder, this consists of the frontend application `TodoReact` app.
-    ```bash
-    git clone https://github.com/featherhttp/tutorial.git featherhttp-tutorial
-    cd featherhttp-tutorial/Tutorial 
-    ```
-
-    > If using [Visual Studio Code](https://code.visualstudio.com/), install the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for C# support.
+1. Download this [repository](https://github.com/featherhttp/tutorial/archive/master.zip). Unzip it, and navigate to the Tutorial folder, this consists of the frontend application `TodoReact` app.
+   > If using [Visual Studio Code](https://code.visualstudio.com/), install the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for C# support.
 
 **Task**:  Build the backend portion using FeatherHttp
 -------------------------------------------------------
