@@ -11,7 +11,7 @@
 1. Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
 1. Install the FeatherHttp template using the `dotnet CLI`. Copy the command below into a terminal or command prompt to install the template.
     ```
-    dotnet new -i FeatherHttp.Templates::0.1.64-alpha.g00afb18f22 --nuget-source https://f.feedz.io/featherhttp/framework/nuget/index.json
+    dotnet new -i FeatherHttp.Templates::0.1.67-alpha.g69b43bed72 --nuget-source https://f.feedz.io/featherhttp/framework/nuget/index.json
     ```
     This will make the `FeatherHttp` templates available in the `dotnet new` command (more below).
 
