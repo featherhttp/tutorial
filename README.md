@@ -171,7 +171,7 @@ TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
 ![image](https://user-images.githubusercontent.com/2546640/75119637-bc056a80-5652-11ea-81c8-71ea13d97a3c.png)
 
 ## Changing the state of todo items
-1. In `Program.cs`, create another method called `UpdateTodoItem` inside of the `Program` class:
+1. In `Program.cs`, create another method called `UpdateCompleted` inside of the `Program` class:
     ```C#
     static async Task UpdateCompleted(HttpContext http)
     {
