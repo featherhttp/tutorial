@@ -199,7 +199,7 @@ TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
     }
     ```
 
-    The above logic retrives the id from the route parameter "id" and uses it to find the todo item in the database. It then reads the JSON payload from the incoming request, sets the `IsComplete` property and updates the todo item in the database.
+    The above logic retrieves the id from the route parameter "id" and uses it to find the todo item in the database. It then reads the JSON payload from the incoming request, sets the `IsComplete` property and updates the todo item in the database.
 1. Wire up `UpdateCompleted` to the `api/todos/{id}` route by modifying the code in `Main` to the following:
     ```C#
     static async Task Main(string[] args)
