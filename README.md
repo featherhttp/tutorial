@@ -90,7 +90,7 @@ TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
     This code does 2 things:
      - It exposes a `Todos` property which represents the list of todo items in the database.
      - The call to `UseInMemoryDatabase` wires up the in memory database storage. Data will only be persisted as long as the application is running.
-1. Restart the server side application but this time we're going to use `dotnet watch`:
+1. Now we're going to use `dotnet watch` to run the server side application:
     ```
     dotnet watch run
     ```
