@@ -6,16 +6,19 @@
 
 **Why FeatherHttp**: FeatherHttp is lightweight server-side framework designed to scale-up as your application grows in complexity. 
 
-# Setup
+# Prerequsites
 
 1. Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
+1. Install [Node.js](https://nodejs.org/en/)
+
+# Setup
+
 1. Install the FeatherHttp template using the `dotnet CLI`. Copy the command below into a terminal or command prompt to install the template.
     ```
     dotnet new -i FeatherHttp.Templates::0.1.67-alpha.g69b43bed72 --nuget-source https://f.feedz.io/featherhttp/framework/nuget/index.json
     ```
     This will make the `FeatherHttp` templates available in the `dotnet new` command (more below).
 
-1. Install [Node.js](https://nodejs.org/en/)
 1. Download this [repository](https://github.com/featherhttp/tutorial/archive/master.zip). Unzip it, and navigate to the Tutorial folder, this consists of the frontend application `TodoReact` app.
    > If using [Visual Studio Code](https://code.visualstudio.com/), install the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for C# support.
 
