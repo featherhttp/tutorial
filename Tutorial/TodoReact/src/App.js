@@ -25,6 +25,7 @@ function App() {
       method: "POST",
       body: JSON.stringify({ ...todo, isComplete: isComplete })
     });
+    await getTodos();
   }
 
   async function deleteTodo(id) {
