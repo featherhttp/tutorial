@@ -6,7 +6,7 @@
 
 **Why FeatherHttp**: FeatherHttp is lightweight server-side framework designed to scale-up as your application grows in complexity. 
 
-# Prerequsites
+# Prerequisites
 
 1. Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
 1. Install [Node.js](https://nodejs.org/en/)
@@ -115,7 +115,7 @@ TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
     ```
 
     This method gets the list of todo items from the database and writes a JSON representation to the HTTP response.
-1. Add the approprate `usings` to the top of the `Program.cs` file.
+1. Add the appropriate `usings` to the top of the `Program.cs` file.
     ```
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Builder;
