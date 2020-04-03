@@ -102,6 +102,15 @@ TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
 
 ## Expose the list of todo items
 
+1. Add the appropriate `usings` to the top of the `Program.cs` file.
+    ```
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
+    ```
+    This will import the required namespaces so that the application compiles successfully.
+
 1. In `Program.cs`, create a method called `GetTodos` inside of the `Program` class:
 
     ```C#
@@ -115,14 +124,6 @@ TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1
     ```
 
     This method gets the list of todo items from the database and writes a JSON representation to the HTTP response.
-1. Add the appropriate `usings` to the top of the `Program.cs` file.
-    ```
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore;
-    ```
-    This will import the required namespaces so that the application compiles successfully.
     
 1. Wire up `GetTodos` to the `api/todos` route by modifying the code in `Main` to the following:
     ```C#
