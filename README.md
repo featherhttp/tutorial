@@ -23,7 +23,6 @@ Install the following:
     dotnet new -i FeatherHttp.Templates::0.1.67-alpha.g69b43bed72 --nuget-source https://f.feedz.io/featherhttp/framework/nuget/index.json
     ```
     The preceding command makes the `FeatherHttp` templates available to the `dotnet new` command.
-
 1. Download the [featherhttp repository zip file](https://github.com/featherhttp/tutorial/archive/master.zip).
 1. Unzip *tutorial-master.zip* and navigate to the *Tutorial* folder. The *Tutorial* folder consists of the frontend `TodoReact` app.
 1. Optional: If using [Visual Studio Code](https://code.visualstudio.com/), install the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for C# support.
@@ -33,7 +32,7 @@ Install the following:
 
 The completed exercise is available in the [samples folder](https://github.com/featherhttp/tutorial/tree/master/Sample). If you have problems following the tutorial, refer to the completed sample.
 
-###  Run the frontend app
+### Run the frontend app
 
 Navigate to the *Tutorial\TodoReact* folder and run the following commands:
 
@@ -43,12 +42,13 @@ npm start
 ```
 
 The preceding commands:
-  - Restores packages `npm i`. Ignore the warning messages `npm i` generates.
-  - Starts the react app `npm start` and opens a browser window to the app that has no functionality. Ignore the **Proxy error**, that will be addressed later in the tutorial.
+
+  - `npm i`: Restores packages using. Ignore the warning messages `npm i` generates.
+  - `npm start` : Starts the react app and opens a browser window to the app that has no functionality. Ignore the **Proxy error**, that will be addressed later in the tutorial.
 
   ![image](https://user-images.githubusercontent.com/2546640/75070087-86307c80-54c0-11ea-8012-c78813f1dfd6.png)
 
-Keep the React app running, it's needed for the back-end in the steps laster in this tutorial.
+Keep the React app running, it's needed for the backend in the steps laster in this tutorial.
 
 ## Build backend using FeatherHttp
 
@@ -65,7 +65,7 @@ Keep the React app running, it's needed for the back-end in the steps laster in 
      - Creates a new FeatherHttp app.
      - Adds the NuGet `Microsoft.EntityFrameworkCore.InMemory` package required for later steps in this tutorial.
 
-1.  Open the *TodoApi* Folder in editor of your choice. <!-- what common editors beside VSC allow opening a folder? -->
+1. Open the *TodoApi* Folder in editor of your choice. <!-- what common editors beside VSC allow opening a folder? -->
 
 ### Create the database model
 
@@ -89,7 +89,7 @@ Keep the React app running, it's needed for the back-end in the steps laster in 
 
    The preceding model is used for reading JSON and storing todo items into the database.
 
-2. Create a file called *TodoDbContext.cs* with the following content:
+2. Create a file called *TodoDbContext.cs* with the following code:
 
     ```C#
     using Microsoft.EntityFrameworkCore;
@@ -108,9 +108,10 @@ Keep the React app running, it's needed for the back-end in the steps laster in 
     The preceding code:
 
      - Exposes a `Todos` property, which represents the list of todo items in the database.
-     - `UseInMemoryDatabase` initializes the in memory database storage. Data is only be persisted while the app is running.
+     - `UseInMemoryDatabase` initializes the in memory database storage. Data is only be persisted while the app is running. Each time the app is restarted, the previous data is lost.
 
 3. Use `dotnet watch` to run the server-side app:
+
     ```
     dotnet watch run
     ```
@@ -130,7 +131,7 @@ Keep the React app running, it's needed for the back-end in the steps laster in 
 
     The preceding code imports the required namespaces so that the app compiles successfully.
 
-* In `Program.cs`, create a method called `GetTodos` inside of the `Program` class:
+* In `Program.cs`, create a method called `GetTodos` in the `Program` class:
 
     ```C#
     static async Task GetTodos(HttpContext http)
@@ -145,6 +146,7 @@ Keep the React app running, it's needed for the back-end in the steps laster in 
     The preceding code gets the list of todo items from the database and writes a JSON representation to the HTTP response.
 
 * Connect `GetTodos` to the `api/todos` route by replacing the code in `Main` with the following:
+
     ```C#
     static async Task Main(string[] args)
     {
@@ -163,7 +165,7 @@ Keep the React app running, it's needed for the back-end in the steps laster in 
 
 ### Add a new todo item
 
-* In *Program.cs*, add the `CreateTodo` in the `Program` class:
+* In *Program.cs*, add the `CreateTodo` to the `Program` class:
 
     ```C#
     static async Task CreateTodo(HttpContext http)
@@ -193,6 +195,7 @@ Keep the React app running, it's needed for the back-end in the steps laster in 
         await app.RunAsync();
     }
     ```
+
 * Navigate to the `TodoReact` app that is running on http://localhost:3000.
 * Add a todo item in the input box. For example, add `Clean apartment`.
 * Refresh the https://localhost:5001/api/todos page. The JSON output of the new todo item is displayed.
@@ -237,7 +240,7 @@ Keep the React app running, it's needed for the back-end in the steps laster in 
     * Reads the JSON payload from the incoming request.
     * Sets the `IsComplete` property and updates the todo item in the database.
 
-* Connect `UpdateCompleted` to the `api/todos/{id}` route by replacing the code in `Main` with the following code:
+* Connect `UpdateCompleted` to the `api/todos/{id}` route by replacing the code in `Main` with the following:
 
     ```C#
     static async Task Main(string[] args)
