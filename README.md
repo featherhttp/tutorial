@@ -8,7 +8,7 @@
 
 # Prerequisites
 
-1. Install [.NET Core  3.1 SDK ](https://dotnet.microsoft.com/download)
+1. Install [.NET Core  5.0 Preview 7 SDK ](https://dotnet.microsoft.com/download/dotnet/5.0)
 1. Install [Node.js](https://nodejs.org/en/)
 
 # Setup
