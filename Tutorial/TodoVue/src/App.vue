@@ -28,36 +28,49 @@ export default {
   data() {
     return {
       newTodo: "",
-      todos: getTodos()
+      todos: getTodos(),
     };
   },
   methods: {
     async createTodo(newTodo) {
-      let data = JSON.stringify({ name: newTodo })
+      let data = JSON.stringify({ name: newTodo });
       await api.createTodo(data);
 
       //these lines dont run ???
-      console.log("create done")
-      this.getTodos()
+      console.log("create done");
+      this.getTodos();
     },
 
     async getTodos() {
       // these are not running?
-      console.log("in get todos")
+      console.log("in get todos");
       this.todos = await api.getTodos();
-      console.log("ttods " + this.todos )
-    }
-  }
+      console.log("ttods " + this.todos);
+    },
+  },
 };
 </script>
 
 <style>
+h1 {
+  font-size: 100px;
+  font-weight: 100;
+  color: #41bf84;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #41bf84;
   margin-top: 60px;
+}
+input {
+  width: 400px;
+  padding: 15px 22px;
+  margin: 10px 5px;
+  box-sizing: border-box;
 }
 </style>
