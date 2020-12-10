@@ -8,7 +8,7 @@
 
 # Prerequisites
 
-1. Install [.NET Core  5.0 Preview 7 SDK ](https://dotnet.microsoft.com/download/dotnet/5.0)
+1. Install [.NET Core  5.0](https://dotnet.microsoft.com/download)
 1. Install [Node.js](https://nodejs.org/en/)
 
 # Setup
@@ -49,7 +49,7 @@ TodoReact> npm start
 ```
 Tutorial>dotnet new feather -n TodoApi
 Tutorial> cd TodoApi
-TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 5.0.0-preview.7.20365.15
+TodoApi> dotnet add package Microsoft.EntityFrameworkCore.InMemory
 ```
    - The commands above
      - create a new FeatherHttp application `dotnet new feather -n TodoApi`
